@@ -137,6 +137,13 @@ RULE_BASED_PATTERNS = [
     # ── Existing report/custom report patterns ───────────────────────────
     (r"(?i)\b(email.report|custom.report|segment.discovery|diagnostics|driver.analysis|tiger|hvc|click.performance|click.map|whatsapp.report|export|recipient.activity|tooltip|DFAD|multivariate|MVT|zero.state|marketing.dashboard)\b",
      None, "Advanced Analytics & AI-Powered Insights"),
+
+    # ── Cross-pillar R&A coordination (maps to highest-weight pillar) ─
+    (r"(?i)\b(Q4.PRD.Review|PRD.Review|roadmap.*R&A|R&A.*roadmap)\b", "Strategy", "Advanced Analytics & AI-Powered Insights"),
+    (r"(?i)\b(AI.reports|AI.report.*priority|data.issues.*real|data.discrepan)\b", None, "Advanced Analytics & AI-Powered Insights"),
+    (r"(?i)\b(Q4.*project.*binder|project.*binder|Q3.*commit|product.*discount.*prompt)\b", None, "Advanced Analytics & AI-Powered Insights"),
+    (r"(?i)\b(CRM.platform|L2C.*customer|target.*L2C|L2C.*deep.dive|marketing.*team.*MC)\b", None, "Platform Intelligence Across MC & QBO"),
+    (r"(?i)\b(data.quality|data.issue|metric.quality)\b", None, "Trusted Data Foundation & Quality at Scale"),
 ]
 
 # ── Anomaly thresholds ───────────────────────────────────────────────────────
