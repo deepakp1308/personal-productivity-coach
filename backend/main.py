@@ -13,6 +13,7 @@ from pydantic import BaseModel
 
 from backend.storage import db
 from backend.agents.orchestrator import run_pipeline
+from backend.agents.qa_agent import run_qa_suite, format_qa_report
 from backend.analysis import engine
 from backend.api.chat import handle_chat
 from backend import config
@@ -222,6 +223,18 @@ def api_chat(body: ChatRequest):
 def api_run_pipeline(use_llm: bool = False):
     result = run_pipeline(use_llm=use_llm)
     return result
+
+
+# ── QA Agent ─────────────────────────────────────────────────────────────────
+
+@app.get("/api/qa")
+def api_qa():
+    return run_qa_suite()
+
+@app.get("/api/qa/report")
+def api_qa_report():
+    result = run_qa_suite()
+    return {"report": format_qa_report(result), **result}
 
 
 # ── CLI ──────────────────────────────────────────────────────────────────────
