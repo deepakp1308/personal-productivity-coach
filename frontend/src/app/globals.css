@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+:root {
+  --sidebar-bg: #162251;
+  --sidebar-hover: #1e2d6a;
+  --page-bg: #f0f4f8;
+  --card-bg: #ffffff;
+  --border: #e8edf5;
+  --text-primary: #1a1f36;
+  --text-secondary: #6b7c93;
+  --accent-blue: #0070d2;
+  --ai-teal: #00b9a9;
+  --chart-navy: #1e3a6e;
+  --chart-blue: #4472c4;
+  --chart-teal: #00b9a9;
+  --chart-pink: #f4809b;
+  --green: #1aab68;
+  --red: #d13438;
+  --warning: #f5a623;
+}
+
+body {
+  font-family: 'Avenir Next', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  color: var(--text-primary);
+  background: var(--page-bg);
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 4px rgba(26, 40, 96, 0.08);
+}
+
+.source-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text-secondary);
+}
+.source-pill.active {
+  background: var(--accent-blue);
+  color: white;
+  border-color: var(--accent-blue);
+}
+
+.ai-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--ai-teal);
+  font-weight: 600;
+}
+
+.badge-accelerate { background: #e8f7f0; color: #1aab68; }
+.badge-cut { background: #fde8ea; color: #d13438; }
+.badge-redirect { background: #e8f0fd; color: #0070d2; }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
