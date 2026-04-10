@@ -1,24 +1,32 @@
 /**
  * API client for the Personal Productivity Coach.
- * Fetches from static JSON files (GitHub Pages) or live backend.
+ *
+ * Read-only data: always served from static JSON in public/api/
+ * (works on GitHub Pages, Netlify, and local dev with no backend).
+ *
+ * Chat/write operations: hit the live backend on localhost:8001
+ * (only available when running the FastAPI server locally).
  */
 
-const API_BASE = typeof window !== "undefined" && window.location.hostname === "localhost"
-  ? "http://localhost:8001"
-  : "";
+const BACKEND_URL = "http://localhost:8001";
 
 async function fetchJSON<T>(path: string): Promise<T> {
-  // Try static JSON first (for GitHub Pages), fall back to live API
-  const staticPath = `/api${path.replace("/api", "")}.json`;
-  try {
-    const res = await fetch(`${API_BASE}${path}`);
-    if (res.ok) return res.json();
-  } catch {}
-  // Fallback to static
+  // Strip "/api" prefix and add ".json" to get the static file path
+  const endpoint = path.replace(/^\/api/, "").replace(/\?.*$/, "");
+  const staticPath = `/api${endpoint}.json`;
+
+  // Always try static JSON first (works everywhere)
   try {
     const res = await fetch(staticPath);
     if (res.ok) return res.json();
   } catch {}
+
+  // Fallback: try live backend (only works when server is running)
+  try {
+    const res = await fetch(`${BACKEND_URL}${path}`);
+    if (res.ok) return res.json();
+  } catch {}
+
   throw new Error(`Failed to fetch ${path}`);
 }
 
@@ -151,11 +159,18 @@ export async function getMetrics(period?: string): Promise<any> {
 }
 
 export async function sendChatMessage(message: string, sessionId?: string): Promise<ChatResponse> {
-  const res = await fetch(`${API_BASE}/api/chat`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ message, session_id: sessionId }),
-  });
-  if (!res.ok) throw new Error("Chat request failed");
-  return res.json();
+  try {
+    const res = await fetch(`${BACKEND_URL}/api/chat`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message, session_id: sessionId }),
+    });
+    if (!res.ok) throw new Error("Chat request failed");
+    return res.json();
+  } catch {
+    return {
+      response: "The backend server isn't running. Start it with:\n\n`cd /Users/dprabhakara/ai_workspace/personal-coach && python3 -m backend.main --serve`\n\nThen try again.",
+      context: { session_id: sessionId || "offline" },
+    };
+  }
 }
