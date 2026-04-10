@@ -12,9 +12,10 @@ const NAV_ITEMS = [
 ];
 
 const PILLARS = [
-  { name: "Analytics & AI", pct: "40%", color: "var(--chart-navy)" },
-  { name: "MC & QBO Intelligence", pct: "35%", color: "var(--chart-blue)" },
-  { name: "Data Foundation", pct: "25%", color: "var(--chart-teal)" },
+  { name: "Analytics & AI", pct: "35%", color: "var(--chart-navy)" },
+  { name: "MC & QBO Intelligence", pct: "30%", color: "var(--chart-blue)" },
+  { name: "Data Foundation", pct: "20%", color: "var(--chart-teal)" },
+  { name: "Leadership & Strategy", pct: "15%", color: "var(--warning)" },
 ];
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

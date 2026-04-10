@@ -94,9 +94,10 @@ def ingest_real_data():
 
     # Seed priorities
     for p in [
-        {"name": "Advanced Analytics & AI-Powered Insights", "description": "Analytics Agent GA, DSB intelligence, omnichannel, contextual insights.", "weight": 0.40, "pillar": 2},
-        {"name": "Platform Intelligence Across MC & QBO", "description": "GBSG BI platform, L2C reporting, Omni integration.", "weight": 0.35, "pillar": 3},
-        {"name": "Trusted Data Foundation & Quality at Scale", "description": "Modernization, QA practices, data quality.", "weight": 0.25, "pillar": 1},
+        {"name": "Advanced Analytics & AI-Powered Insights", "description": "Analytics Agent GA, DSB intelligence, omnichannel, contextual insights.", "weight": 0.35, "pillar": 2},
+        {"name": "Platform Intelligence Across MC & QBO", "description": "GBSG BI platform, L2C reporting, Omni integration.", "weight": 0.30, "pillar": 3},
+        {"name": "Trusted Data Foundation & Quality at Scale", "description": "Modernization, QA practices, data quality.", "weight": 0.20, "pillar": 1},
+        {"name": "Leadership & Strategic Investments", "description": "Career positioning, org design, people management, team health, hiring, stakeholder alignment.", "weight": 0.15, "pillar": 4},
     ]:
         db.insert_priority(p["name"], p["description"], p["weight"], p["pillar"])
 

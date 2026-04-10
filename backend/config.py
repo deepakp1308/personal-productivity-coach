@@ -27,20 +27,26 @@ DEFAULT_PRIORITIES = [
     {
         "name": "Advanced Analytics & AI-Powered Insights",
         "description": "Analytics Agent GA, DSB intelligence, omnichannel cross-channel + WhatsApp, contextual insights in workflows.",
-        "weight": 0.40,
+        "weight": 0.35,
         "pillar": 2,
     },
     {
         "name": "Platform Intelligence Across MC & QBO",
         "description": "GBSG BI platform POC, L2C reporting, MC Analytics Agent as sub-agent in Intuit Intelligence (Omni).",
-        "weight": 0.35,
+        "weight": 0.30,
         "pillar": 3,
     },
     {
         "name": "Trusted Data Foundation & Quality at Scale",
         "description": "Complete modernization of outstanding surfaces, strengthen QA practices across full dev lifecycle.",
-        "weight": 0.25,
+        "weight": 0.20,
         "pillar": 1,
+    },
+    {
+        "name": "Leadership & Strategic Investments",
+        "description": "Career positioning, org design, people management, team health, hiring, stakeholder alignment, and cross-functional leadership.",
+        "weight": 0.15,
+        "pillar": 4,
     },
 ]
 
@@ -138,12 +144,37 @@ RULE_BASED_PATTERNS = [
     (r"(?i)\b(email.report|custom.report|segment.discovery|diagnostics|driver.analysis|tiger|hvc|click.performance|click.map|whatsapp.report|export|recipient.activity|tooltip|DFAD|multivariate|MVT|zero.state|marketing.dashboard)\b",
      None, "Advanced Analytics & AI-Powered Insights"),
 
-    # ── Cross-pillar R&A coordination (maps to highest-weight pillar) ─
+    # ── Cross-pillar R&A coordination ────────────────────────────────
     (r"(?i)\b(Q4.PRD.Review|PRD.Review|roadmap.*R&A|R&A.*roadmap)\b", "Strategy", "Advanced Analytics & AI-Powered Insights"),
     (r"(?i)\b(AI.reports|AI.report.*priority|data.issues.*real|data.discrepan)\b", None, "Advanced Analytics & AI-Powered Insights"),
     (r"(?i)\b(Q4.*project.*binder|project.*binder|Q3.*commit|product.*discount.*prompt)\b", None, "Advanced Analytics & AI-Powered Insights"),
     (r"(?i)\b(CRM.platform|L2C.*customer|target.*L2C|L2C.*deep.dive|marketing.*team.*MC)\b", None, "Platform Intelligence Across MC & QBO"),
     (r"(?i)\b(data.quality|data.issue|metric.quality)\b", None, "Trusted Data Foundation & Quality at Scale"),
+
+    # ── Pillar 4: Leadership & Strategic Investments (15%) ───────────
+    # Career positioning & org design
+    (r"(?i)\b(role.*discussion|career|org.structure|creative.org|title.*comp|reporting.structure|direct.report)\b",
+     "Strategy", "Leadership & Strategic Investments"),
+    (r"(?i)\b(CRM.*role|platform.*role|role.*opportunity|Jing.*team|150.engineer|HR.*confirm)\b",
+     "Strategy", "Leadership & Strategic Investments"),
+    (r"(?i)\b(Kashi.*org|Intuit.*platform|platform.*evolution|common.good)\b",
+     "Strategy", "Leadership & Strategic Investments"),
+    # People management & team health
+    (r"(?i)\b(interpersonal|friction|apolog|no.hard.feelings|edgy|under.the.weather|OOO|feeling.unwell)\b",
+     "Stakeholder", "Leadership & Strategic Investments"),
+    (r"(?i)\b(compliance.*course|compliance.*train|overdue.*compliance|training.*overdue)\b",
+     "InternalOps", "Leadership & Strategic Investments"),
+    # Hiring & interviews
+    (r"(?i)\b(interview.*follow|thank.you.*conversation|hiring|candidate|recruit)\b",
+     "Stakeholder", "Leadership & Strategic Investments"),
+    # Leadership meetings & exec alignment
+    (r"(?i)\b(MC.Program.Review|Leadership.Execution|Leads.Sync|leads.sync)\b",
+     "Stakeholder", "Leadership & Strategic Investments"),
+    (r"(?i)\b(debrief|weekly.report|PM.Productivity.Agent)\b",
+     "InternalOps", "Leadership & Strategic Investments"),
+    # General 1:1s with stakeholders (Nakib, Nathan, Michael)
+    (r"(?i)(Deepak.*/.*Nakib|Deepak.*/.*Michael|Deepak.*/.*Nathan)", "Stakeholder", "Leadership & Strategic Investments"),
+    (r"(?i)\b(Web.Deep.Dive)\b", "InternalOps", "Leadership & Strategic Investments"),
 ]
 
 # ── Anomaly thresholds ───────────────────────────────────────────────────────

@@ -7,6 +7,7 @@ const PRIORITY_COLOR_MAP: Record<string, string> = {
   "Advanced Analytics & AI-Powered Insights": "var(--chart-navy)",
   "Platform Intelligence Across MC & QBO": "var(--chart-blue)",
   "Trusted Data Foundation & Quality at Scale": "var(--chart-teal)",
+  "Leadership & Strategic Investments": "var(--warning)",
   "Other": "var(--chart-pink)",
 };
 
